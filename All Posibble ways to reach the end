@@ -1,0 +1,16 @@
+from typing import List
+class Solution:
+    def findAllPossiblePaths(self, n : int, m : int, grid : List[List[int]]) -> List[List[int]]:
+        # code here
+        a = []
+        
+        def dfs(i,j,cur):
+            if i==n-1 and j==m-1:
+                a.append(cur)
+                return
+            if j+1<m:
+                dfs(i,j+1,cur+[grid[i][j+1]])
+            if i+1<n:
+                dfs(i+1,j,cur+[grid[i+1][j]])
+        dfs(0,0,[grid[0][0]])
+        return a[::-1]
